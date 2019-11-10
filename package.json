@@ -1,0 +1,32 @@
+{
+  "name": "domaindataapi",
+  "version": "1.0.0",
+  "description": "Testing domains for information about the company and technologies used",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MattMartin1919/DomainDataApi.git"
+  },
+  "author": "Matt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MattMartin1919/DomainDataApi/issues"
+  },
+  "homepage": "https://github.com/MattMartin1919/DomainDataApi#readme",
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "is-valid-domain": "0.0.11",
+    "normalize-url": "^4.5.0",
+    "swagger-ui-express": "^4.1.1",
+    "wappalyzer": "^5.8.4"
+  }
+}
