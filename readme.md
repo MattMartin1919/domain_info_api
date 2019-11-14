@@ -7,14 +7,14 @@ WIP: Open page rank, dns entries, financial information (if available) and the v
 
 ## How to run:
 ### Docker:
-1) '''git clone https://github.com/MattMartin1919/DomainDataApi'''
+1) '''git clone https://github.com/MattMartin1919/DomainScraper.git'''
 2) '''cd DomainDataApi'''
 3) '''sudo docker build -t domaindataapi .'''
 4) '''sudo docker run -p 3000:3000 -d  domaindataapi'''
 5) Visit #host-ip#:3000 for the swagger UI
 
 ### npm
-1) '''git clone https://github.com/MattMartin1919/DomainDataApi'''
+1) '''git clone https://github.com/MattMartin1919/DomainScraper.git'''
 2) '''cd DomainDataApi'''
 3) '''npm install'''
 4) '''npm start'''
