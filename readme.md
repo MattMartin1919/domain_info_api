@@ -2,6 +2,7 @@
 
 ## What this tool does:
 Currently this tool checks any domain for technologies being used and social media links.
+
 WIP: dns entries, financial information (if available) and the vertical cassification. 
 
 ## How to run:
