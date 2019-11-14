@@ -1,7 +1,8 @@
-# Welcome to the DomainDataApi!
+# Welcome to the DomainScraper!
 
 ## What this tool does:
-Check any domain for technologies being used, dns entries, social media links, financial information (if available) and the vertical cassification. 
+Currently this tool checks any domain for technologies being used and social media links.
+WIP: dns entries, financial information (if available) and the vertical cassification. 
 
 ## How to run:
 ### Docker:
