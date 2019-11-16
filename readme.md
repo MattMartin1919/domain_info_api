@@ -1,9 +1,9 @@
 # Welcome to the DomainScraper!
 
 ## What this tool does:
-Currently this tool checks any domain for technologies being used and social media links.
+Currently this tool checks any domain for technologies being used , open page rank, dns entries, and social media links.
 
-WIP: Open page rank, dns entries, financial information (if available) and the vertical cassification. 
+WIP: financial information (if available) and the vertical cassification. 
 
 ## How to run:
 ### Docker:

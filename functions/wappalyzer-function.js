@@ -86,7 +86,6 @@ module.exports = {
                     browser
                 } = params;
                 htmlBody = browser["html"];
-                dataLayer = browser["js"]["window"]["dataLayer"];
                 socialMedia = getSocialMedia(htmlBody, url);
             } catch (error) {
                 console.log("error getting social stuff from " + url + " error was " + error);
@@ -123,9 +122,6 @@ module.exports = {
 //Organized the raw data into an easy to store object
 function decodeJson(applicationData, domainName, statusCode, socialMedia) {
     try {
-        if (!dataLayer) {
-            dataLayer = [];
-        }
         AccountingArray = [],
             AdvertisingNetworksArray = [],
             AnalyticsArray = [],

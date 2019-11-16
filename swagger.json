@@ -107,6 +107,123 @@
                     }
                 }
             }
-        }
+        },
+        "/page_rank": {
+          "get": {
+              "tags": ["Page Rank"],
+              "summary": "Gets the open page rank for up to 100 domains at a time.",
+              "description": "Gets the open page rank for up to 100 domains at a time.",
+              "operationId": "PageRank",
+              "produces": ["application/json"],
+              "parameters": [{
+                  "name": "urls",
+                  "in": "query",
+                  "description": "comma separated",
+                  "required": true,
+                  "type": "string",
+                  "format": "string"
+              }],
+              "responses": {
+                  "200": {
+                      "description": "successful operation",
+                      "examples": {
+                          "response": {
+                              "domain": "test.com/",
+                              "status_code": 200,
+                              "data": {
+                                  "test.com": {
+                                    "page_rank": 100
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "422": {
+                      "description": "Domain is not valid or crawlable."
+                  },
+                  "500": {
+                      "description": "Internal server error."
+                  }
+              }
+          }
+      },
+      "/dns_info/ns": {
+          "get": {
+              "tags": ["DNS Info"],
+              "summary": "Gets DNS information for a domain.",
+              "description": "Gets DNS information for a domain.",
+              "operationId": "DNSNSInfo",
+              "produces": ["application/json"],
+              "parameters": [{
+                  "name": "url",
+                  "in": "query",
+                  "description": "Domain without protocol or path",
+                  "required": true,
+                  "type": "string",
+                  "format": "string"
+              }],
+              "responses": {
+                  "200": {
+                      "description": "successful operation",
+                      "examples": {
+                          "response": {
+                              "domain": "test.com/",
+                              "status_code": 200,
+                              "data": {
+                                  "test.com": {
+                                    "page_rank": 100
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "422": {
+                      "description": "Domain is not valid or crawlable."
+                  },
+                  "500": {
+                      "description": "Internal server error."
+                  }
+              }
+          }
+      },
+      "/dns_info/cname": {
+          "get": {
+              "tags": ["DNS Info"],
+              "summary": "Gets DNS information for a domain.",
+              "description": "Gets DNS information for a domain.",
+              "operationId": "DNSCNAMEInfo",
+              "produces": ["application/json"],
+              "parameters": [{
+                  "name": "url",
+                  "in": "query",
+                  "description": "Domain without protocol or path",
+                  "required": true,
+                  "type": "string",
+                  "format": "string"
+              }],
+              "responses": {
+                  "200": {
+                      "description": "successful operation",
+                      "examples": {
+                          "response": {
+                              "domain": "test.com/",
+                              "status_code": 200,
+                              "data": {
+                                  "test.com": {
+                                    "page_rank": 100
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  "422": {
+                      "description": "Domain is not valid or crawlable."
+                  },
+                  "500": {
+                      "description": "Internal server error."
+                  }
+              }
+          }
+      }
     }
 }
