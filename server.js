@@ -7,6 +7,7 @@ const express = require('express'), //We are using express for the API
     wappFunctions = require("./functions/wappalyzer-function.js"),
     pagerankFunctions = require("./functions/openpagerank-functions.js"),
     dnsFunctions = require("./functions/dns-functions.js"),
+    whoisFunctions = require("./functions/whois-functions.js"),
     isValidDomain = require('is-valid-domain'),
     swaggerUi = require('swagger-ui-express');
     swaggerDocument = require('./swagger.json');
@@ -76,6 +77,91 @@ app.get("/dns_info/cname", (req, res, next) => {
     res.status(422).send("you need to specify a valid domain without the protocol and path");
   }
 });
+
+
+/*
+    Path used to get whois info for a domain
+*/
+//registrar
+app.get("/whois_info/registrar", (req, res, next) => {
+  var queryResults = req.query;
+  var url = queryResults["url"];
+  if (isValidDomain(url, {subdomain: false})) {
+    whoisFunctions.getRegistar(url, res);
+  } else {
+    res.status(422).send("you need to specify a valid domain without the protocol and path");
+  }
+});
+//company  name
+app.get("/whois_info/company_name", (req, res, next) => {
+  var queryResults = req.query;
+  var url = queryResults["url"];
+  if (isValidDomain(url, {subdomain: false})) {
+    whoisFunctions.getCompanyName(url, res);
+  } else {
+    res.status(422).send("you need to specify a valid domain without the protocol and path");
+  }
+});
+
+/*
+    Path used for Jira (WIP)
+*/
+//Post a comment 
+app.get("/jira/add_comment", (req, res, next) => {
+  var queryResults = req.query;
+  var ticket_number = queryResults["ticket_number"];
+  var comment = queryResults["comment"];
+  var username_pass = queryResults["username_pass"];
+  if (ticket_number && comment && username_pass) {
+    //post comment in jira ticket using their credentials
+  } else {
+    res.status(422).send("you need to add the ticket number, comment text, login details");
+  }
+});
+
+
+/*
+    Path used for OPS API (WIP)
+*/
+//Get account information
+app.get("/ops/account_information", (req, res, next) => {
+  var queryResults = req.query;
+  var partner_id = queryResults["partner_id"];
+  var advertiser_id = queryResults["advertiser_id"];
+  if (partner_id || advertiser_id) {
+    //get account information from the ops api
+  } else {
+    res.status(422).send("you need to add the partner id or advertiser id");
+  }
+});
+
+/*
+    account tests (WIP)
+*/
+//get account information
+app.get("/banner/404_test", (req, res, next) => {
+  var queryResults = req.query;
+  var partner_id = queryResults["partner_id"];
+  if (partner_id || adversiter_id) {
+    //test the partners banners for any 404 links
+  } else {
+    res.status(422).send("you need to add the partner id");
+  }
+});
+
+//test images in feed
+app.get("/images/404_test", (req, res, next) => {
+  var queryResults = req.query;
+  var partner_id = queryResults["partner_id"];
+  if (partner_id) {
+    //test the partner's feed for any 404 image links
+  } else {
+    res.status(422).send("you need to add the partner id");
+  }
+});
+
+
+
 
 /*
     Path for swagger UI

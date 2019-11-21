@@ -29,6 +29,7 @@
     "normalize-url": "^4.5.0",
     "request": "^2.88.0",
     "swagger-ui-express": "^4.1.1",
-    "wappalyzer": "^5.8.4"
+    "wappalyzer": "^5.8.4",
+    "whois": "^2.11.0"
   }
 }
