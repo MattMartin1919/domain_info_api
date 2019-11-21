@@ -16,7 +16,7 @@ module.exports = {
         }
       };
       request(OpenPageRankConfig, function (error, response, body) {
-        if (error){
+        if (error) {
           console.log(error);
         }
         if (response && response.statusCode == 200) {
@@ -30,7 +30,7 @@ module.exports = {
           res.status(500).send("internal server error");
         }
       });
-      
+
     } catch (err) {
       console.log(err);
       res.status(500).send("internal error");

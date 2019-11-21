@@ -225,7 +225,7 @@
         }
       }
     },
-    "/whois_info/registar": {
+    "/whois_info/registrar": {
       "get": {
         "tags": ["WhoIs Info"],
         "summary": "Gets whois information for a domain.",
