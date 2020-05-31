@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Description",
+    "description": "This is the UI for the DomainScraper endpoints.  You can use this to test the calls before writing scripts.",
     "version": "1.0.0",
-    "title": "Domain Scraper"
+    "title": "DomainScraper"
   },
   "schemes": ["http"],
   "paths": {
@@ -24,7 +24,7 @@
         }],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "success",
             "examples": {
               "response": {
                 "domain": "test.com/",
@@ -33,77 +33,13 @@
                   "accounting": [],
                   "advertising_newtworks": [],
                   "analytics": [],
-                  "blogs": [],
-                  "build_ci": [],
-                  "cache_tools": [],
-                  "captchas": [],
-                  "cdn": [],
-                  "cms": [],
-                  "comments_systems": [],
-                  "containers": [],
-                  "control_systems": [],
-                  "crm": [],
-                  "cryptominer": [],
-                  "database_manager": [],
-                  "database": [],
-                  "devtools": [],
-                  "document_mangment_systems": [],
-                  "documentation_tools": [],
-                  "ecommerce": [],
-                  "editors": [],
-                  "feed_readers": [],
-                  "font_script": [],
-                  "hosting_panels": [],
-                  "iaas": [],
-                  "issue_trackers": [],
-                  "javascript_frameworks": [],
-                  "javascript_graphics": [],
-                  "javascript_libraries": [],
-                  "landingpage_builders": [],
-                  "livechat": [],
-                  "lms": [],
-                  "load_balancers": [],
-                  "maps": [],
-                  "marketing_automation": [],
-                  "media_servers": [],
-                  "message_boards": [],
-                  "miscellaneous": [],
-                  "mobile_frameworks": [],
-                  "network_devices": [],
-                  "network_storage": [],
-                  "operating_systems": [],
-                  "paas": [],
-                  "payment_processors": [],
-                  "paywalls": [],
-                  "photo_galleries": [],
-                  "printers": [],
-                  "programming_languages": [],
-                  "remote_access": [],
-                  "reverse_proxy": [],
-                  "rich_text_editors": [],
-                  "saas": [],
-                  "search_engines": [],
-                  "seo": [],
-                  "static_site_generator": [],
-                  "tag_manager": [],
-                  "user_onboarding": [],
-                  "video_players": [],
-                  "web_frameworks": [],
-                  "web_mail": [],
-                  "web_server_extentions": [],
-                  "web_servers": [],
-                  "webcam": [],
-                  "widgets": [],
-                  "wikis": []
+                  "blogs": []
                 }
               }
             }
           },
-          "422": {
-            "description": "Domain is not valid or crawlable."
-          },
           "500": {
-            "description": "Internal server error."
+            "description": "error"
           }
         }
       }
@@ -125,7 +61,7 @@
         }],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "success",
             "examples": {
               "response": {
                 "domain": "test.com/",
@@ -138,11 +74,8 @@
               }
             }
           },
-          "422": {
-            "description": "Domain is not valid or crawlable."
-          },
           "500": {
-            "description": "Internal server error."
+            "description": "error"
           }
         }
       }
@@ -164,7 +97,7 @@
         }],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "success",
             "examples": {
               "response": {
                 "domain": "test.com/",
@@ -177,11 +110,8 @@
               }
             }
           },
-          "422": {
-            "description": "Domain is not valid or crawlable."
-          },
           "500": {
-            "description": "Internal server error."
+            "description": "error"
           }
         }
       }
@@ -203,7 +133,7 @@
         }],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "success",
             "examples": {
               "response": {
                 "domain": "test.com/",
@@ -216,11 +146,8 @@
               }
             }
           },
-          "422": {
-            "description": "Domain is not valid or crawlable."
-          },
           "500": {
-            "description": "Internal server error."
+            "description": "error"
           }
         }
       }
@@ -242,7 +169,7 @@
         }],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "success",
             "examples": {
               "response": {
                 "domain": "test.com/",
@@ -255,11 +182,8 @@
               }
             }
           },
-          "422": {
-            "description": "Domain is not valid or crawlable."
-          },
           "500": {
-            "description": "Internal server error."
+            "description": "error"
           }
         }
       }
@@ -281,7 +205,7 @@
         }],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "success",
             "examples": {
               "response": {
                 "domain": "test.com/",
@@ -294,11 +218,8 @@
               }
             }
           },
-          "422": {
-            "description": "Domain is not valid or crawlable."
-          },
           "500": {
-            "description": "Internal server error."
+            "description": "error"
           }
         }
       }

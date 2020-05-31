@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MattMartin1919/DomainDataApi.git"
+    "url": "git+https://github.com/MattMartin1919/DomainScraper.git"
   },
   "author": "Matt",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MattMartin1919/DomainDataApi/issues"
+    "url": "https://github.com/MattMartin1919/DomainScraper/issues"
   },
-  "homepage": "https://github.com/MattMartin1919/DomainDataApi#readme",
+  "homepage": "https://github.com/MattMartin1919/DomainScraper#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",

@@ -46,7 +46,7 @@ app.get('/domain_data', (req, res) => {
   })) {
     wappFunctions.runWappalyzer(url, res);
   } else {
-    res.status(422).send('you need to specify a valid domain without the protocol and path');
+    res.status(500).send('you need to specify a valid domain without the protocol and path');
   }
 });
 
@@ -56,21 +56,21 @@ app.get('/domain_data', (req, res) => {
 app.get('/page_rank', (req, res) => {
   const queryResults = req.query;
   const urls = queryResults.urls.split(',');
-  const goodURLS = [];
-  const badURLS = [];
+  const validUrls = [];
+  const invalidUrls = [];
   for (let x = 0; x < urls.length; x += 1) {
     if (isValidDomain(urls[x], {
       subdomain: false,
     })) {
-      goodURLS.push(urls[x]);
+      validUrls.push(urls[x]);
     } else {
-      badURLS.push(urls[x]);
+      invalidUrls.push(urls[x]);
     }
   }
-  if (goodURLS.length > 0) {
-    pagerankFunctions.runPageRank(goodURLS, badURLS, res);
+  if (validUrls.length > 0) {
+    pagerankFunctions.runPageRank(validUrls, invalidUrls, res);
   } else {
-    res.status(422).send('there are no valid domains in the list.');
+    res.status(500).send('there are no valid domains in the list.');
   }
 });
 
@@ -86,7 +86,7 @@ app.get('/dns_info/ns', (req, res) => {
   })) {
     dnsFunctions.getNSInfo(url, res);
   } else {
-    res.status(422).send('you need to specify a valid domain without the protocol and path');
+    res.status(500).send('you need to specify a valid domain without the protocol and path');
   }
 });
 // CNAME data
@@ -98,7 +98,7 @@ app.get('/dns_info/cname', (req, res) => {
   })) {
     dnsFunctions.getCNAMEInfo(url, res);
   } else {
-    res.status(422).send('you need to specify a valid domain without the protocol and path');
+    res.status(500).send('you need to specify a valid domain without the protocol and path');
   }
 });
 
@@ -114,7 +114,7 @@ app.get('/whois_info/registrar', (req, res) => {
   })) {
     whoisFunctions.getRegistar(url, res);
   } else {
-    res.status(422).send('you need to specify a valid domain without the protocol and path');
+    res.status(500).send('you need to specify a valid domain without the protocol and path');
   }
 });
 // company  name
@@ -126,7 +126,7 @@ app.get('/whois_info/company_name', (req, res) => {
   })) {
     whoisFunctions.getCompanyName(url, res);
   } else {
-    res.status(422).send('you need to specify a valid domain without the protocol and path');
+    res.status(500).send('you need to specify a valid domain without the protocol and path');
   }
 });
 

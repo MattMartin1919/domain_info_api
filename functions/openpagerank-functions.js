@@ -31,7 +31,7 @@ module.exports = {
         })
         .catch((error) => {
           debug(error);
-          res.status(422).send('error retrieving page rank from OpenPageRank');
+          res.status(500).send('error retrieving page rank from OpenPageRank');
         });
     } catch (error) {
       debug(error);
