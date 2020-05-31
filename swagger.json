@@ -3,7 +3,7 @@
   "info": {
     "description": "Description",
     "version": "1.0.0",
-    "title": "Domain Crawler"
+    "title": "Domain Scraper"
   },
   "schemes": ["http"],
   "paths": {

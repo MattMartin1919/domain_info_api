@@ -1,46 +1,44 @@
-var dns = require('dns');
-
+const dns = require('dns');
+const debug = require('debug')('DomainScraper:server');
 /*
     Exposed functions
 */
 module.exports = {
-  getNSInfo: function (url, res) {
+  /**
+   * Get the name server info about a domain
+   */
+  getNSInfo(url, res) {
     try {
-      dns.resolveNs(url, function (err, addresses) {
-        if (!err) {
-          res.status(200).send({
-            "data": {
-              addresses
-            }
-          });
+      dns.resolveNs(url, (error, addresses) => {
+        if (!error && addresses) {
+          res.status(200).send({ data: { addresses } });
         } else {
-          console.log(err);
-          res.status(500).send("internal error");
+          debug(error);
+          res.status(500).send('website returned a non 200 response');
         }
       });
-    } catch (err) {
-      console.log(err);
-      res.status(500).send("internal error");
+    } catch (error) {
+      debug(error);
+      res.status(500).send('error with the dns package');
     }
   },
-  getCNAMEInfo: function (url, res) {
+  /**
+   * Get the cname info about a sub-domain
+   */
+  getCNAMEInfo(url, res) {
     try {
-      dns.resolveCname(url, function (err, addresses) {
-        if (!err) {
-          res.status(200).send({
-            "data": {
-              addresses
-            }
-          });
-        } else if (err && err.code == 'ENODATA') {
-          res.status(422).send("no cname data");
+      dns.resolveCname(url, (err, addresses) => {
+        if (!err && addresses) {
+          res.status(200).send({ data: { addresses } });
+        } else if (err && err.code === 'ENODATA') {
+          res.status(500).send('no cname data');
         } else {
-          res.status(500).send("internal error");
+          res.status(500).send('website returned a non 200 response');
         }
       });
     } catch (err) {
-      console.log(err);
-      res.status(500).send("internal error");
+      debug(err);
+      res.status(500).send('error with the dns package');
     }
-  }
-}
+  },
+};

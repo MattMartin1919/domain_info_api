@@ -1,11 +1,10 @@
 {
-  "name": "domaindataapi",
+  "name": "domainscraper",
   "version": "1.0.0",
-  "description": "Testing domains for information about the company and technologies used",
-  "main": "server.js",
+  "description": "Testing domains for information about technologies used",
   "scripts": {
-    "test": "nodemon server.js",
-    "start": "node server.js"
+    "dev": "DEBUG=domain-scraper:* nodemon ./bin/www",
+    "start": "env NODE_ENV=production & node ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -17,19 +16,24 @@
     "url": "https://github.com/MattMartin1919/DomainDataApi/issues"
   },
   "homepage": "https://github.com/MattMartin1919/DomainDataApi#readme",
-  "devDependencies": {
-    "nodemon": "^1.19.3"
-  },
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
     "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
     "express": "^4.17.1",
-    "is-valid-domain": "0.0.11",
-    "normalize-url": "^4.5.0",
-    "request": "^2.88.0",
-    "swagger-ui-express": "^4.1.1",
-    "wappalyzer": "^5.8.4",
-    "whois": "^2.11.0"
+    "helmet": "^3.22.0",
+    "is-valid-domain": "0.0.14",
+    "morgan": "^1.10.0",
+    "nodemon": "^1.19.3",
+    "normalize-url": "^5.0.0",
+    "puppeteer": "^3.1.0",
+    "swagger-ui-express": "^4.1.4",
+    "wappalyzer": "^5.9.34",
+    "whois": "^2.12.1"
   }
 }
