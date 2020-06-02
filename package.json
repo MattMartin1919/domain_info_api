@@ -4,8 +4,8 @@
   "description": "Testing domains for information about technologies used",
   "scripts": {
     "test": "mocha ./tests/spec.js",
-    "dev": "DEBUG=domain-scraper:* nodemon ./bin/www",
-    "start": "env NODE_ENV=production & node ./bin/www"
+    "dev": "cross-env DEBUG=DomainScraper:* nodemon ./bin/www",
+    "start": "cross-env NODE_ENV=production node ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -19,25 +19,28 @@
   "homepage": "https://github.com/MattMartin1919/DomainScraper#readme",
   "dependencies": {
     "axios": "^0.19.2",
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "is-valid-domain": "0.0.14",
-    "mocha": "^7.2.0",
-    "morgan": "^1.10.0",
-    "nodemon": "^1.19.3",
     "normalize-url": "^5.0.0",
     "puppeteer": "^3.1.0",
     "swagger-ui-express": "^4.1.4",
     "wappalyzer": "^5.9.34",
     "whois": "^2.12.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "mocha": "^7.2.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^1.19.3"
   }
 }

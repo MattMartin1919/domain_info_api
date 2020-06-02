@@ -1,7 +1,7 @@
 const Wappalyzer = require('wappalyzer');
 const { load } = require('cheerio');
 const normalizeUrl = require('normalize-url');
-const debug = require('debug')('domain-scraper:server');
+const debug = require('debug')('DomainScraper:server');
 
 // Social media platforms
 const socialNetworksObject = {
@@ -162,9 +162,13 @@ module.exports = {
             ));
             break;
           case 0:
+          case 403:
+          case 401:
+            debug(statusCode);
             res.status(500).send('domain can not be crawled');
             break;
           default:
+            debug(statusCode);
             res.status(500).send('internal server error');
             break;
         }

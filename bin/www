@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // module dependencies.
-const debug = require('debug')('domain-scraper:server');
+const debug = require('debug')('DomainScraper:server');
 const http = require('http');
 const app = require('../app');
 
