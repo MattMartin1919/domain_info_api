@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Testing domains for information about technologies used",
   "scripts": {
+    "test": "DEBUG=domain-scraper:* nodemon ./bin/www",
     "dev": "DEBUG=domain-scraper:* nodemon ./bin/www",
     "start": "env NODE_ENV=production & node ./bin/www"
   },
