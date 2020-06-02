@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Testing domains for information about technologies used",
   "scripts": {
-    "test": "DEBUG=domain-scraper:* nodemon ./bin/www",
+    "test": "mocha ./tests/spec.js",
     "dev": "DEBUG=domain-scraper:* nodemon ./bin/www",
     "start": "env NODE_ENV=production & node ./bin/www"
   },
@@ -19,6 +19,8 @@
   "homepage": "https://github.com/MattMartin1919/DomainScraper#readme",
   "dependencies": {
     "axios": "^0.19.2",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
@@ -29,6 +31,7 @@
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "is-valid-domain": "0.0.14",
+    "mocha": "^7.2.0",
     "morgan": "^1.10.0",
     "nodemon": "^1.19.3",
     "normalize-url": "^5.0.0",
