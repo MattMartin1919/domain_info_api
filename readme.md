@@ -1,5 +1,7 @@
 # Welcome to the DomainScraper!
 
+[![Build Status](https://travis-ci.com/MattMartin1919/DomainScraper.svg?branch=master)](https://travis-ci.com/MattMartin1919/DomainScraper)
+
 ## What this tool does:
 Provides an API that can check any domain for technologies being used, open page rank, dns entries and social media links.
 
