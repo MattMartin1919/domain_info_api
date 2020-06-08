@@ -9,6 +9,7 @@ Provides an API that can check any domain for technologies being used, open page
 1) `git clone https://github.com/MattMartin1919/DomainScraper.git`
 2) `cd DomainScraper`
 3) `npm install`
+4) `npm install --only=dev` (optional for development)
 
 ### Run in dev mode (hot reload)
 1) `npm run dev`
