@@ -5,10 +5,11 @@ const swaggerUi = require('swagger-ui-express');
 const logger = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
-const wappFunctions = require('./functions/wappalyzer-function.js');
-const pagerankFunctions = require('./functions/openpagerank-functions.js');
-const dnsFunctions = require('./functions/dns-functions.js');
-const whoisFunctions = require('./functions/whois-functions.js');
+const socialMediaFunctions = require('./functions/social_media.js');
+const wappFunctions = require('./functions/wappalyzer.js');
+const pagerankFunctions = require('./functions/openpagerank.js');
+const dnsFunctions = require('./functions/dns.js');
+const whoisFunctions = require('./functions/whois.js');
 const swaggerDocument = require('./swagger.json');
 
 const app = express();
@@ -30,7 +31,7 @@ app.use(helmet());
 // recognize incoming objects as json objects
 app.use(express.json());
 
-// parse incoming requests with urlencoded payloads
+// parse incoming requests with url encoded payloads
 app.use(express.urlencoded({ extended: false }));
 // set up cors
 app.use(cors());
@@ -77,26 +78,14 @@ app.get('/page_rank', (req, res) => {
 /*
     Path used to get DNS info for a domain
 */
-// NS data
-app.get('/dns_info/ns', (req, res) => {
-  const queryResults = req.query;
-  const { url } = queryResults;
-  if (isValidDomain(url, {
-    subdomain: false,
-  })) {
-    dnsFunctions.getNSInfo(url, res);
-  } else {
-    res.status(500).send('you need to specify a valid domain without the protocol and path');
-  }
-});
 // CNAME data
-app.get('/dns_info/cname', (req, res) => {
+app.get('/dns_info', (req, res) => {
   const queryResults = req.query;
   const { url } = queryResults;
   if (isValidDomain(url, {
     subdomain: true,
   })) {
-    dnsFunctions.getCNAMEInfo(url, res);
+    dnsFunctions.getAllInfo(url, res);
   } else {
     res.status(500).send('you need to specify a valid domain without the protocol and path');
   }

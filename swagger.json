@@ -2,14 +2,13 @@
   "swagger": "2.0",
   "info": {
     "description": "This is the UI for the DomainScraper endpoints.  You can use this to test the calls before writing scripts.",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "title": "DomainScraper"
   },
-  "schemes": ["http"],
   "paths": {
     "/domain_data": {
       "get": {
-        "tags": ["Domain Crawler"],
+        "tags": ["Technology"],
         "summary": "Detects technologies and social media used on a domain",
         "description": "Detects the technology and social media on a domain in real time.",
         "operationId": "DomainData",
@@ -80,45 +79,9 @@
         }
       }
     },
-    "/dns_info/ns": {
+    "/dns_info": {
       "get": {
-        "tags": ["DNS Info"],
-        "summary": "Gets DNS information for a domain.",
-        "description": "Gets DNS information for a domain.",
-        "operationId": "DNSNSInfo",
-        "produces": ["application/json"],
-        "parameters": [{
-          "name": "url",
-          "in": "query",
-          "description": "Domain without protocol or path",
-          "required": true,
-          "type": "string",
-          "format": "string"
-        }],
-        "responses": {
-          "200": {
-            "description": "success",
-            "examples": {
-              "response": {
-                "domain": "test.com/",
-                "status_code": 200,
-                "data": {
-                  "test.com": {
-                    "page_rank": 100
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "error"
-          }
-        }
-      }
-    },
-    "/dns_info/cname": {
-      "get": {
-        "tags": ["DNS Info"],
+        "tags": ["DNS"],
         "summary": "Gets DNS information for a domain.",
         "description": "Gets DNS information for a domain.",
         "operationId": "DNSCNAMEInfo",
@@ -154,7 +117,7 @@
     },
     "/whois_info/registrar": {
       "get": {
-        "tags": ["WhoIs Info"],
+        "tags": ["WhoIs"],
         "summary": "Gets whois information for a domain.",
         "description": "Gets whois information for a domain.",
         "operationId": "whois_registrar_info",
@@ -190,7 +153,7 @@
     },
     "/whois_info/company_name": {
       "get": {
-        "tags": ["WhoIs Info"],
+        "tags": ["WhoIs"],
         "summary": "Gets whois information for a domain.",
         "description": "Gets whois information for a domain.",
         "operationId": "whois_company_info",

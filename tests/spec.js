@@ -8,11 +8,24 @@ const server = http.createServer(app);
 chai.use(chaiHttp);
 chai.should();
 
-
-describe('GET /', () => {
+// index page
+describe('Test swagger page', () => {
   it('responds with 200', (done) => {
     chai.request(server)
       .get('/')
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+});
+
+// domain data
+describe('Test domain data endpoint', function () {
+  this.timeout(5000); // this endpoint might take a while to run
+  it('responds with 200', (done) => {
+    chai.request(server)
+      .get('/domain_data?url=test.com')
       .end((err, res) => {
         res.should.have.status(200);
         done();
