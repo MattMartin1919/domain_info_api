@@ -120,6 +120,22 @@ app.get('/whois_info/company_name', (req, res) => {
 });
 
 /*
+    Path for social media links
+*/
+// registrar
+app.get('/social_media', (req, res) => {
+  const queryResults = req.query;
+  const { url } = queryResults;
+  if (isValidDomain(url, {
+    subdomain: true,
+  })) {
+    socialMediaFunctions.GetAccounts(url, res);
+  } else {
+    res.status(500).send('you need to specify a valid domain without the protocol and path');
+  }
+});
+
+/*
     Path for swagger UI
 */
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

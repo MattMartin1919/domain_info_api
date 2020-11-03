@@ -1,6 +1,7 @@
+const axios = require('axios');
 const { load } = require('cheerio');
 const normalizeUrl = require('normalize-url');
-const debug = require('debug')('DomainScraper:server');
+const debug = require('debug')('DomainScraper:socialmedia');
 
 // Social media platforms
 const socialNetworksObject = {
@@ -62,7 +63,7 @@ function getSocialMedia(html) {
     });
     return handles;
   } catch (error) {
-    debug(`error getting social media links. error was ${error}`);
+    debug(error);
     return null;
   }
 }
@@ -71,12 +72,27 @@ function getSocialMedia(html) {
     Exposed functions
 */
 module.exports = {
-  runWappalyzer(url, res) {
+  GetAccounts(url, res) {
     // Add a protocol to the url
     const normalizedUrl = normalizeUrl(url);
 
     // Scrape for social media links
     let socialMediaLinks = {};
-    socialMediaLinks = getSocialMedia(html);
+    try {
+      axios.get(normalizedUrl)
+        .then((request) => {
+          socialMediaLinks = getSocialMedia(request.data);
+          res.status(200).send({
+            data: socialMediaLinks,
+          });
+        })
+        .catch((error) => {
+          debug(error);
+          res.status(422).send('Error getting social media');
+        });
+    } catch (err) {
+      debug(err);
+      res.status(500).send('Something odd happened while getting your data...');
+    }
   },
 };

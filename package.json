@@ -1,7 +1,7 @@
 {
-  "name": "domainscraper",
+  "name": "domain_info_api",
   "version": "2.0.0",
-  "description": "Testing domains for information about technologies used",
+  "description": "Testing domains for information",
   "scripts": {
     "test": "mocha ./tests/spec.js",
     "dev": "cross-env DEBUG=DomainScraper:* nodemon ./bin/www",
@@ -9,38 +9,38 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MattMartin1919/DomainScraper.git"
+    "url": "git+https://github.com/MattMartin1919/domain_info_api"
   },
   "author": "Matt",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MattMartin1919/DomainScraper/issues"
+    "url": "https://github.com/MattMartin1919/domain_info_api/issues"
   },
-  "homepage": "https://github.com/MattMartin1919/DomainScraper#readme",
+  "homepage": "https://github.com/MattMartin1919/domain_info_api#readme",
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.0",
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
     "debug": "^4.2.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "helmet": "^4.1.1",
-    "is-valid-domain": "0.0.15",
+    "helmet": "^4.2.0",
+    "is-valid-domain": "0.0.17",
     "morgan": "^1.10.0",
-    "normalize-url": "^5.1.0",
-    "puppeteer": "^5.3.0",
+    "normalize-url": "^5.3.0",
+    "puppeteer": "^5.4.1",
     "swagger-ui-express": "^4.1.4",
-    "wappalyzer": "^6.3.6",
-    "whois": "^2.13.0"
+    "wappalyzer": "^6.3.12",
+    "whois": "^2.13.3"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "eslint": "^7.9.0",
+    "eslint": "^7.12.1",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0",
-    "mocha": "^8.1.3",
-    "nodemon": "^2.0.4"
+    "eslint-plugin-import": "^2.22.1",
+    "mocha": "^8.2.1",
+    "nodemon": "^2.0.6"
   }
 }

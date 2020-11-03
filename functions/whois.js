@@ -1,8 +1,9 @@
 const whois = require('whois');
-const debug = require('debug')('DomainScraper:server');
+const debug = require('debug')('DomainScraper:whois');
 
 // Helper function
 async function grabItem(item, response) {
+  debug(response);
   // break each line up
   const lines = response.split('\n');
   // if the first line returns the below, there will be no data

@@ -186,6 +186,40 @@
           }
         }
       }
+    },
+    "/social_media": {
+      "get": {
+        "tags": ["Social Media"],
+        "summary": "Gets social media links on a page",
+        "description": "Gets social media links on a page",
+        "operationId": "social_media",
+        "produces": ["application/json"],
+        "parameters": [{
+          "name": "url",
+          "in": "query",
+          "description": "Domain without protocol or path",
+          "required": true,
+          "type": "string",
+          "format": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "success",
+            "examples": {
+              "response": {
+                "domain": "test.com",
+                "status_code": 200,
+                "data": {
+                  "facebook": ["example account"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "error"
+          }
+        }
+      }
     }
   }
 }

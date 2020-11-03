@@ -1,5 +1,5 @@
 const axios = require('axios');
-const debug = require('debug')('DomainScraper:server');
+const debug = require('debug')('DomainScraper:openpagerank');
 
 // declare axios headers
 const headers = {
@@ -31,11 +31,11 @@ module.exports = {
         })
         .catch((error) => {
           debug(error);
-          res.status(500).send('error retrieving page rank');
+          res.status(422).send('Error contacting open page rank service');
         });
-    } catch (error) {
-      debug(error);
-      res.status(500).send('internal error with page rank function');
+    } catch (err) {
+      debug(err);
+      res.status(500).send('Something odd happened while getting your data...');
     }
   },
 };

@@ -2,7 +2,7 @@
 /* eslint-disable guard-for-in */
 const Wappalyzer = require('wappalyzer');
 const normalizeUrl = require('normalize-url');
-const debug = require('debug')('DomainScraper:server');
+const debug = require('debug')('DomainScraper:wappalyzer');
 
 // Organized the raw data into an easy to store object
 function decodeJson(applicationData, domainName, statusCode) {
@@ -14,7 +14,7 @@ function decodeJson(applicationData, domainName, statusCode) {
         // only return if application confidence is greater than 50%
         if (applicationData[y].confidence >= 50 && applicationCategories) {
           for (const x in applicationCategories) {
-            const categoryName = applicationCategories[x];
+            const categoryName = applicationCategories[x].name;
             // if a key's array does not exist, make it
             filteredData[categoryName] = filteredData[categoryName] || [];
             // add the application name to the category
@@ -70,14 +70,14 @@ module.exports = {
       }
       await wappalyzer.destroy();
       res.status(200).send(decodeJson(
-        results.applications,
+        results.technologies,
         normalizedUrl,
         statusCode,
       ));
     } catch (error) {
       await wappalyzer.destroy();
       debug(error);
-      res.status(500).send('did you input a valid domain?');
+      res.status(422).send('did you input a valid domain?');
     }
   },
 };
