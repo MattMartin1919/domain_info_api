@@ -41,14 +41,15 @@ function decodeJson(applicationData, domainName, statusCode) {
 // Wappalyzer search params
 const options = {
   debug: false,
-  delay: 300,
+  delay: 500,
   maxDepth: 3,
   maxUrls: 5,
-  maxWait: 10000,
+  maxWait: 20000,
   recursive: true,
+  probe: true,
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
   htmlMaxCols: 2000,
-  htmlMaxRows: 3000,
+  htmlMaxRows: 2000,
 };
 
 /*
