@@ -43,7 +43,7 @@ app.get('/domain_data', (req, res) => {
   const queryResults = req.query;
   const { url } = queryResults;
   if (isValidDomain(url, {
-    subdomain: false,
+    subdomain: true,
   })) {
     wappFunctions.runWappalyzer(url, res);
   } else {

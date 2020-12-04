@@ -19,6 +19,10 @@ Provides an API that can check any domain for technologies being used, open page
 1) `npm start`
 2) Visit localhost:3000 for the swagger UI
 
+### Run in pm2 cluster mode
+1) `pm2 start ecosystem.config.js`
+2) Visit localhost:3000 for the swagger UI
+
 
 
 ## Credits

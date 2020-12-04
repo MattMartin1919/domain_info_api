@@ -41,10 +41,10 @@ function decodeJson(applicationData, domainName, statusCode) {
 // Wappalyzer search params
 const options = {
   debug: false,
-  delay: 500,
+  delay: 1000,
   maxDepth: 3,
-  maxUrls: 5,
-  maxWait: 20000,
+  maxUrls: 3,
+  maxWait: 30000,
   recursive: true,
   probe: true,
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
