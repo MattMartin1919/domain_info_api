@@ -4,6 +4,8 @@ const Wappalyzer = require('wappalyzer');
 const normalizeUrl = require('normalize-url');
 const debug = require('debug')('DomainScraper:wappalyzer');
 
+process.setMaxListeners(0);
+
 // Organized the raw data into an easy to store object
 function decodeJson(applicationData, domainName, statusCode) {
   try {
@@ -41,7 +43,7 @@ function decodeJson(applicationData, domainName, statusCode) {
 // Wappalyzer search params
 const options = {
   debug: false,
-  delay: 1000,
+  delay: 500,
   maxDepth: 3,
   maxUrls: 3,
   maxWait: 30000,

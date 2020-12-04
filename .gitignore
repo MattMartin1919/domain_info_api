@@ -2,3 +2,5 @@ node_modules
 package-lock.json
 .env
 todo.md
+test.csv
+URL analysis.csv
