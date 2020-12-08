@@ -7,7 +7,7 @@ const debug = require('debug')('DomainScraper:wappalyzer');
 process.setMaxListeners(0);
 
 // Organized the raw data into an easy to store object
-function decodeJson(applicationData, domainName, statusCode) {
+async function decodeJson(applicationData, domainName, statusCode) {
   try {
     const filteredData = {};
     if (applicationData && applicationData.length > 0) {
@@ -46,9 +46,9 @@ const options = {
   delay: 500,
   maxDepth: 3,
   maxUrls: 3,
-  maxWait: 30000,
+  maxWait: 40000,
   recursive: true,
-  probe: true,
+  // probe: true,
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
   htmlMaxCols: 2000,
   htmlMaxRows: 2000,
@@ -59,28 +59,29 @@ const options = {
 */
 module.exports = {
   async runWappalyzer(url, res) {
-    // Add a protocol to the url
-    const normalizedUrl = normalizeUrl(url);
-    const wappalyzer = new Wappalyzer(options);
-
     try {
-      await wappalyzer.init();
-      const site = await wappalyzer.open(normalizedUrl);
-      const results = await site.analyze();
-      let statusCode;
-      for (const x in results.urls) {
-        statusCode = results.urls[x].status;
-      }
-      await wappalyzer.destroy();
-      res.status(200).send(decodeJson(
-        results.technologies,
-        normalizedUrl,
-        statusCode,
-      ));
+      // Add a protocol to the url
+      const normalizedUrl = normalizeUrl(url);
+      new Wappalyzer(options).open(normalizedUrl).analyze()
+        .then(async (results) => {
+          let statusCode;
+          for (const x in results.urls) {
+            statusCode = results.urls[x].status;
+          }
+          res.status(200).send(await decodeJson(
+            results.technologies,
+            normalizedUrl,
+            statusCode,
+          ));
+        })
+        .catch((error) => {
+          debug(error);
+          res.status(500).send('Something went wrong analyzing the results...');
+        });
     } catch (error) {
-      await wappalyzer.destroy();
+      // await wappalyzer.destroy();
       debug(error);
-      res.status(422).send('did you input a valid domain?');
+      res.status(500).send('Something went wrong getting the website data...');
     }
   },
 };
