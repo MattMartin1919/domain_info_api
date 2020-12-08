@@ -47,7 +47,7 @@ for line in f:
     finalUrls.append("http://127.0.0.1:3000/domain_data?url=" + cleanUrl(line.split(',')[1]))
 
 conn = aiohttp.TCPConnector(limit=50) # number of connections at one time
-timeout = aiohttp.ClientTimeout(total=(60 * 60 * 6)) # timeout set for the whole program.  6 hours by default.  Should cover ~30k sites
+timeout = aiohttp.ClientTimeout(total=(60 * 60 * 6)) # timeout set for the whole program.  6 hours by default which should cover ~30k sites
 session = aiohttp.ClientSession(connector=conn, loop=loop, timeout=timeout)
 
 async def test():

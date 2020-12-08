@@ -10,7 +10,7 @@ process.setMaxListeners(0);
 function decodeJson(applicationData, domainName, statusCode) {
   try {
     const filteredData = {};
-    if (applicationData.length > 0) {
+    if (applicationData && applicationData.length > 0) {
       for (let y = 0; y < applicationData.length; y += 1) {
         const applicationCategories = applicationData[y].categories;
         // only return if application confidence is greater than 50%
