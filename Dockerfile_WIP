@@ -1,0 +1,17 @@
+FROM node:12-alpine
+
+ENV WAPPALYZER_ROOT /opt/domain_info_api
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+ENV CHROMIUM_BIN /usr/bin/chromium-browser
+
+RUN apk update && apk add -u --no-cache \
+	nodejs \
+  chromium
+
+RUN mkdir -p "$WAPPALYZER_ROOT/browsers"
+
+WORKDIR "$WAPPALYZER_ROOT"
+
+ADD . .
+
+ENTRYPOINT ["node", "./bin/www"]
