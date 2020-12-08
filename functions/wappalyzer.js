@@ -1,10 +1,9 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
-const Wappalyzer = require('wappalyzer');
 const normalizeUrl = require('normalize-url');
 const debug = require('debug')('DomainScraper:wappalyzer');
 
-process.setMaxListeners(0);
+// process.setMaxListeners(0);
 
 // Organized the raw data into an easy to store object
 async function decodeJson(applicationData, domainName, statusCode) {
@@ -40,29 +39,15 @@ async function decodeJson(applicationData, domainName, statusCode) {
   }
 }
 
-// Wappalyzer search params
-const options = {
-  debug: false,
-  delay: 500,
-  maxDepth: 3,
-  maxUrls: 3,
-  maxWait: 40000,
-  recursive: true,
-  // probe: true,
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
-  htmlMaxCols: 2000,
-  htmlMaxRows: 2000,
-};
-
 /*
     Exposed functions
 */
 module.exports = {
-  async runWappalyzer(url, res) {
+  async runWappalyzer(wappalyzer, url, res) {
     try {
       // Add a protocol to the url
       const normalizedUrl = normalizeUrl(url);
-      new Wappalyzer(options).open(normalizedUrl).analyze()
+      wappalyzer.open(normalizedUrl).analyze()
         .then(async (results) => {
           let statusCode;
           for (const x in results.urls) {

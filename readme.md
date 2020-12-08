@@ -20,7 +20,7 @@ Provides an API that can check any domain for technologies being used, open page
 2) Visit localhost:3000 for the swagger UI
 
 ### Run in pm2 cluster mode
-1) `pm2 start ecosystem.config.js`
+1) `NODE_ENV=production pm2 start ecosystem.config.js`
 2) Visit localhost:3000 for the swagger UI
 
 

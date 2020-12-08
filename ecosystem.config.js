@@ -2,7 +2,7 @@ module.exports = {
   apps: [{
     name: 'domain_info',
     script: './bin/www',
-    instances: '4',
+    instances: 'max',
     exec_mode: 'cluster',
   }],
 };

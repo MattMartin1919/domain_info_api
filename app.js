@@ -5,6 +5,7 @@ const swaggerUi = require('swagger-ui-express');
 const logger = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
+const Wappalyzer = require('wappalyzer');
 const socialMediaFunctions = require('./functions/social_media.js');
 const wappFunctions = require('./functions/wappalyzer.js');
 const pagerankFunctions = require('./functions/openpagerank.js');
@@ -39,13 +40,29 @@ app.use(cors());
 /*
     Path used to test domain with wappalyzer
 */
+
+// Wappalyzer search params
+const options = {
+  debug: false,
+  delay: 500,
+  maxDepth: 3,
+  maxUrls: 3,
+  maxWait: 40000,
+  recursive: true,
+  // probe: true,
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
+  htmlMaxCols: 2000,
+  htmlMaxRows: 2000,
+};
+const wappalyzer = new Wappalyzer(options);
+wappalyzer.init();
 app.get('/domain_data', (req, res) => {
   const queryResults = req.query;
   const { url } = queryResults;
   if (isValidDomain(url, {
     subdomain: true,
   })) {
-    wappFunctions.runWappalyzer(url, res);
+    wappFunctions.runWappalyzer(wappalyzer, url, res);
   } else {
     res.status(500).send('you need to specify a valid domain without the protocol and path');
   }
