@@ -17,8 +17,8 @@ ADD ./bin ./bin
 ADD ./functions ./functions
 ADD ./.env.example ./.env
 ADD ./app.js ./app.js
-ADD ./ecosystem.config.js ./ecosystem.config.js
 ADD ./package.json ./package.json
+ADD ./package-lock.json ./package-lock.json
 ADD ./swagger.json ./swagger.json
 
 RUN npm install
