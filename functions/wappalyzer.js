@@ -47,7 +47,8 @@ module.exports = {
     try {
       // Add a protocol to the url
       const normalizedUrl = normalizeUrl(url);
-      wappalyzer.open(normalizedUrl).analyze()
+      const site = await wappalyzer.open(normalizedUrl);
+      site.analyze()
         .then(async (results) => {
           let statusCode;
           for (const x in results.urls) {
@@ -62,9 +63,11 @@ module.exports = {
         .catch((error) => {
           debug(error);
           res.status(500).send('Something went wrong analyzing the results...');
+        })
+        .finally(() => {
+          site.destroy();
         });
     } catch (error) {
-      // await wappalyzer.destroy();
       debug(error);
       res.status(500).send('Something went wrong getting the website data...');
     }

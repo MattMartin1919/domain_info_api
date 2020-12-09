@@ -38,7 +38,7 @@ async def get_data(url, session):
             ecps = getAndCleanEcpData(content)
             final_data = final_data + (actualUrl + ',' + '"' + ecps + '"' + "\n")
     except:
-        print(f'something went wrong getting {url}')
+        print(f'something went wrong getting {actualUrl}')
         final_data = final_data + (actualUrl + ',' + "none" + "\n")
     finally:
         print(f'done with {number_counter}')
@@ -53,8 +53,8 @@ for line in readFile:
     finalUrls.append("http://127.0.0.1:3000/domain_data?url=" + cleanUrl(line))
 
 # make the connections
-conn = aiohttp.TCPConnector(limit=30) # number of connections at one time
-timeout = aiohttp.ClientTimeout(total=(60 * 60 * 6)) # timeout set for the whole program.  6 hours by default which should cover ~30k sites
+conn = aiohttp.TCPConnector(limit=50) # number of connections at one time
+timeout = aiohttp.ClientTimeout(total=(60 * 60 * 12)) # timeout set for the whole program.  12 hours by default which should cover ~50k sites
 session = aiohttp.ClientSession(connector=conn, loop=loop, timeout=timeout)
 
 # start the tests
