@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:14.15.1-alpine
 
 ENV WAPPALYZER_ROOT /opt/domain_info_api
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true

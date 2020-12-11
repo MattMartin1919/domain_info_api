@@ -33,7 +33,7 @@ async def get_data(url, session):
     global final_data
     actualUrl = url.split('?url=')[1]
     try:
-        async with session.get(url=url) as r:
+        async with session.get(url=url, ssl=False) as r:
             content = await r.text()
             ecps = getAndCleanEcpData(content)
             final_data = final_data + (actualUrl + ',' + '"' + ecps + '"' + "\n")
@@ -50,10 +50,10 @@ for line in readFile:
     # ignore headers
     if 'website' in line:
         continue
-    finalUrls.append("http://127.0.0.1:3000/domain_data?url=" + cleanUrl(line))
+    finalUrls.append("https://127.0.0.1:3000/domain_data?url=" + cleanUrl(line))
 
 # make the connections
-conn = aiohttp.TCPConnector(limit=50) # number of connections at one time
+conn = aiohttp.TCPConnector(limit=100) # number of connections at one time
 timeout = aiohttp.ClientTimeout(total=(60 * 60 * 12)) # timeout set for the whole program.  12 hours by default which should cover ~50k sites
 session = aiohttp.ClientSession(connector=conn, loop=loop, timeout=timeout)
 
