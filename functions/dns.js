@@ -11,13 +11,15 @@ module.exports = {
     resolver.resolveAny(url, (error, addresses) => {
       try {
         debug(error);
-        if (!error && addresses) {
-          res.status(200).send({ data: { addresses } });
-        } else if (error && error.code === 'ENODATA') {
-          res.status(200).send('no data');
+        if (error) {
+          if (error.code === 'ENODATA') {
+            res.status(200).send('no data');
+          } else {
+            res.status(422).send('website returned a non 200 response');
+          }
         } else {
           debug(error);
-          res.status(422).send('website returned a non 200 response');
+          res.status(200).send({ data: { addresses } });
         }
       } catch (err) {
         debug(err);

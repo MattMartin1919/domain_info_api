@@ -50,7 +50,7 @@ for line in readFile:
     # ignore headers
     if 'website' in line:
         continue
-    finalUrls.append("https://127.0.0.1:3000/domain_data?url=" + cleanUrl(line))
+    finalUrls.append("https:https://domain-info-api.mattmartin.dev/domain_data?url=" + cleanUrl(line))
 
 # make the connections
 conn = aiohttp.TCPConnector(limit=100) # number of connections at one time

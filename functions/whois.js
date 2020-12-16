@@ -39,7 +39,7 @@ module.exports = {
           })
           .catch((err) => {
             debug(err);
-            res.status(500).send('error parsing the whois data');
+            res.status(422).send('error parsing the whois data');
           });
       } else {
         debug(error);
@@ -57,7 +57,7 @@ module.exports = {
           })
           .catch((err) => {
             debug(err);
-            res.status(500).send('error parsing the whois data');
+            res.status(422).send('error parsing the whois data');
           });
       } else {
         res.status(500).send('website returned a non 200 response');

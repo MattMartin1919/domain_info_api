@@ -9,11 +9,14 @@ const debug = require('debug')('DomainScraper:wappalyzer');
 async function decodeJson(applicationData, domainName, statusCode) {
   try {
     const filteredData = {};
+    // check if applications
     if (applicationData && applicationData.length > 0) {
+      // loop through the applications data
       for (let y = 0; y < applicationData.length; y += 1) {
         const applicationCategories = applicationData[y].categories;
         // only return if application confidence is greater than 50%
         if (applicationData[y].confidence >= 50 && applicationCategories) {
+          // loop through application category
           for (const x in applicationCategories) {
             const categoryName = applicationCategories[x].name;
             // if a key's array does not exist, make it
@@ -62,7 +65,7 @@ module.exports = {
         })
         .catch((error) => {
           debug(error);
-          res.status(500).send('Something went wrong analyzing the results...');
+          res.status(422).send('Something went wrong analyzing the results...');
         })
         .finally(() => {
           site.destroy();
