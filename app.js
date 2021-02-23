@@ -1,17 +1,17 @@
-require('dotenv').config();
-const express = require('express');
-const isValidDomain = require('is-valid-domain');
-const swaggerUi = require('swagger-ui-express');
-const logger = require('morgan');
-const helmet = require('helmet');
-const cors = require('cors');
-const Wappalyzer = require('wappalyzer');
-const socialMediaFunctions = require('./functions/social_media.js');
-const wappFunctions = require('./functions/wappalyzer.js');
-const pagerankFunctions = require('./functions/openpagerank.js');
-const dnsFunctions = require('./functions/dns.js');
-const whoisFunctions = require('./functions/whois.js');
-const swaggerDocument = require('./swagger.json');
+require("dotenv").config();
+const express = require("express");
+const isValidDomain = require("is-valid-domain");
+const swaggerUi = require("swagger-ui-express");
+const logger = require("morgan");
+const helmet = require("helmet");
+const cors = require("cors");
+const Wappalyzer = require("wappalyzer");
+const socialMediaFunctions = require("./functions/social_media.js");
+const wappFunctions = require("./functions/wappalyzer.js");
+const pagerankFunctions = require("./functions/openpagerank.js");
+const dnsFunctions = require("./functions/dns.js");
+const whoisFunctions = require("./functions/whois.js");
+const swaggerDocument = require("./swagger.json");
 
 const app = express();
 
@@ -19,12 +19,12 @@ const app = express();
  * Add middleware
  */
 // use logger and change session cookie settings if dev env
-if (app.get('env') !== 'production') {
-  app.use(logger('dev'));
+if (app.get("env") !== "production") {
+  app.use(logger("dev"));
 }
 // trust the proxy if prod (behind nginx for example)
-if (app.get('env') === 'production') {
-  app.set('trust proxy', 1);
+if (app.get("env") === "production") {
+  app.set("trust proxy", 1);
 }
 // add basic security via helmet
 app.use(helmet());
@@ -47,39 +47,46 @@ const options = {
   delay: 500,
   maxDepth: 3,
   maxUrls: 3,
-  maxWait: 40000,
+  maxWait: 60000,
   recursive: true,
   // probe: true,
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
+  userAgent:
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
   htmlMaxCols: 2000,
   htmlMaxRows: 2000,
 };
 const wappalyzer = new Wappalyzer(options);
 wappalyzer.init();
-app.get('/domain_data', (req, res) => {
+app.get("/domain_data", (req, res) => {
   const queryResults = req.query;
   const { url } = queryResults;
-  if (isValidDomain(url, {
-    subdomain: true,
-  })) {
+  if (
+    isValidDomain(url, {
+      subdomain: true,
+    })
+  ) {
     wappFunctions.runWappalyzer(wappalyzer, url, res);
   } else {
-    res.status(500).send('you need to specify a valid domain without the protocol and path');
+    res
+      .status(500)
+      .send("you need to specify a valid domain without the protocol and path");
   }
 });
 
 /*
     Path used to test up to 100 domains with openpagerank
 */
-app.get('/page_rank', (req, res) => {
+app.get("/page_rank", (req, res) => {
   const queryResults = req.query;
-  const urls = queryResults.urls.split(',');
+  const urls = queryResults.urls.split(",");
   const validUrls = [];
   const invalidUrls = [];
   for (let x = 0; x < urls.length; x += 1) {
-    if (isValidDomain(urls[x], {
-      subdomain: false,
-    })) {
+    if (
+      isValidDomain(urls[x], {
+        subdomain: false,
+      })
+    ) {
       validUrls.push(urls[x]);
     } else {
       invalidUrls.push(urls[x]);
@@ -88,7 +95,7 @@ app.get('/page_rank', (req, res) => {
   if (validUrls.length > 0) {
     pagerankFunctions.runPageRank(validUrls, invalidUrls, res);
   } else {
-    res.status(500).send('there are no valid domains in the list.');
+    res.status(500).send("there are no valid domains in the list.");
   }
 });
 
@@ -96,15 +103,19 @@ app.get('/page_rank', (req, res) => {
     Path used to get DNS info for a domain
 */
 // CNAME data
-app.get('/dns_info', (req, res) => {
+app.get("/dns_info", (req, res) => {
   const queryResults = req.query;
   const { url } = queryResults;
-  if (isValidDomain(url, {
-    subdomain: true,
-  })) {
+  if (
+    isValidDomain(url, {
+      subdomain: true,
+    })
+  ) {
     dnsFunctions.getAllInfo(url, res);
   } else {
-    res.status(500).send('you need to specify a valid domain without the protocol and path');
+    res
+      .status(500)
+      .send("you need to specify a valid domain without the protocol and path");
   }
 });
 
@@ -112,27 +123,35 @@ app.get('/dns_info', (req, res) => {
     Path used to get whois info for a domain
 */
 // registrar
-app.get('/whois_info/registrar', (req, res) => {
+app.get("/whois_info/registrar", (req, res) => {
   const queryResults = req.query;
   const { url } = queryResults;
-  if (isValidDomain(url, {
-    subdomain: false,
-  })) {
+  if (
+    isValidDomain(url, {
+      subdomain: false,
+    })
+  ) {
     whoisFunctions.getRegistar(url, res);
   } else {
-    res.status(500).send('you need to specify a valid domain without the protocol and path');
+    res
+      .status(500)
+      .send("you need to specify a valid domain without the protocol and path");
   }
 });
 // company  name
-app.get('/whois_info/company_name', (req, res) => {
+app.get("/whois_info/company_name", (req, res) => {
   const queryResults = req.query;
   const { url } = queryResults;
-  if (isValidDomain(url, {
-    subdomain: false,
-  })) {
+  if (
+    isValidDomain(url, {
+      subdomain: false,
+    })
+  ) {
     whoisFunctions.getCompanyName(url, res);
   } else {
-    res.status(500).send('you need to specify a valid domain without the protocol and path');
+    res
+      .status(500)
+      .send("you need to specify a valid domain without the protocol and path");
   }
 });
 
@@ -140,22 +159,26 @@ app.get('/whois_info/company_name', (req, res) => {
     Path for social media links
 */
 // registrar
-app.get('/social_media', (req, res) => {
+app.get("/social_media", (req, res) => {
   const queryResults = req.query;
   const { url } = queryResults;
-  if (isValidDomain(url, {
-    subdomain: true,
-  })) {
+  if (
+    isValidDomain(url, {
+      subdomain: true,
+    })
+  ) {
     socialMediaFunctions.GetAccounts(url, res);
   } else {
-    res.status(500).send('you need to specify a valid domain without the protocol and path');
+    res
+      .status(500)
+      .send("you need to specify a valid domain without the protocol and path");
   }
 });
 
 /*
     Path for swagger UI
 */
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 /*
     return 404 if not any of the paths above
